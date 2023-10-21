@@ -1,5 +1,6 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
+import { redirect } from "next/navigation";
 import { open } from "sqlite";
 import { Database } from "sqlite3";
 

@@ -1,21 +1,17 @@
 "use client";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import React from "react";
 
 export default function Nav() {
-  const router = useRouter();
-
+  const { data: session } = useSession();
   async function handleSignIn() {
     try {
       await signIn("github");
-      router.push("/");
     } catch (e) {
       console.log({ e });
     }
   }
-  const { data: session } = useSession();
   return (
     <nav className="flex justify-between py-4">
       <div className="font-bold text-xl">NEXT TODO</div>
@@ -29,10 +25,10 @@ export default function Nav() {
           </button>
         ) : (
           <button
-            className="p-2 px-4 cursor-pointer bg-green-200 rounded-md shadow-slate-200"
+            className="p-2 px-4 text-white cursor-pointer bg-[#0e1117] rounded-md shadow-slate-200"
             onClick={handleSignIn}
           >
-            Sign in
+            Sign in with Github
           </button>
         )}
         {session?.user ? (
